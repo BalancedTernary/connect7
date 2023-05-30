@@ -12,12 +12,14 @@ class connect7():
             if(x>=0 and y>=0 and x<self.checkerboardSize and y<self.checkerboardSize):
                 if self.checkerboard[y][x]==0:
                     self.checkerboard[y][x]=identy
+                    return True
                 else:
                     print("在已经有子的地方落子(%d,%d)"%(x,y))
             else:
                 print("坐标超限(%d,%d)"%(x,y))
         else:
             print("落子者超限(%d)"%(identy))
+        return False
 
     def horizontalCheck(self,identy,x,y):#横向 从落子点开始检查identy是否胜利,胜利返回identy,否则返回0
         t=0
