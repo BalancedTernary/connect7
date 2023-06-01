@@ -63,10 +63,13 @@ class GUIThread (threading.Thread):
     def __init__(self,checkerboardSize=19):
         threading.Thread.__init__(self)
         self.checkerboardSize=checkerboardSize
+        self.lock = threading.Lock()
+        self.lock.acquire()
     def run(self):
         self.app = wx.App()
         self.frm = GUI(None,checkerboardSize=self.checkerboardSize)
         self.frm.Show()
+        self.lock.release()
         self.app.MainLoop()
     
             
@@ -76,4 +79,5 @@ class GUIThread (threading.Thread):
 if __name__ == '__main__':
     thread = GUIThread()
     thread.start()
+    game.lock.acquire()
     thread.join()    
