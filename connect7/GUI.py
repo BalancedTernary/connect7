@@ -3,6 +3,8 @@ import numpy as np
 import os
 from connect7 import connect7
 import wx
+import threading
+
 #七子棋,三人游戏,每次下两子.最先下的人第一次下一子,最后下的人第一次下三子.
 class GUI(wx.Frame):
     def __init__(self,parent,size = (480, 480),checkerboardSize=19): 
@@ -57,14 +59,20 @@ class GUI(wx.Frame):
     def onClick(self,e):
         self.chess(e.Id%self.checkerboardSize,e.Id//self.checkerboardSize)
         
+class GUIThread (threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+    def run(self):
+        self.app = wx.App()
+        self.frm = GUI(None)
+        self.frm.Show()
+        self.app.MainLoop()
+    
+            
         
 
-if __name__ == '__main__':
-    # When this module is run (not imported) then create the app, the
-    # frame, show it, and start the event loop.
-    app = wx.App()
-    frm = GUI(None)
-    frm.Show()
-    app.MainLoop()
-    
         
+if __name__ == '__main__':
+    thread = GUIThread()
+    thread.start()
+    thread.join()    

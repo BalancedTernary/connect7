@@ -74,6 +74,9 @@ class connect7():
                 print("%d"%(self.checkerboard[y][x]),end='')
             print("\r\n",end='')
 
+    def read(self):
+        return self.checkerboard.copy()
+
         
 
 
