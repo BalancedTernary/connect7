@@ -32,6 +32,15 @@ class GUI(wx.Frame):
         self.mainGrid.Layout()
         self.Refresh()
         
+    def clear(self):
+        self.identy=1
+        self.time=1
+        for button in self.buttons:
+            button.BackgroundColour=wx.Colour(240,240,240,255)
+        for y in range(self.checkerboardSize):
+            for x in range(self.checkerboardSize):
+                self.connect.checkerboard[y][x]=0
+
     def chess(self,x,y):
         if self.time>self.checkerboardSize*self.checkerboardSize:
             return self.identy
@@ -79,5 +88,5 @@ class GUIThread (threading.Thread):
 if __name__ == '__main__':
     thread = GUIThread()
     thread.start()
-    game.lock.acquire()
+    thread.lock.acquire()
     thread.join()    
