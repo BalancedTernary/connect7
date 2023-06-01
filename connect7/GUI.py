@@ -60,11 +60,12 @@ class GUI(wx.Frame):
         self.chess(e.Id%self.checkerboardSize,e.Id//self.checkerboardSize)
         
 class GUIThread (threading.Thread):
-    def __init__(self):
+    def __init__(self,checkerboardSize=19):
         threading.Thread.__init__(self)
+        self.checkerboardSize=checkerboardSize
     def run(self):
         self.app = wx.App()
-        self.frm = GUI(None)
+        self.frm = GUI(None,checkerboardSize=self.checkerboardSize)
         self.frm.Show()
         self.app.MainLoop()
     
