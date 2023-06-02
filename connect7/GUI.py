@@ -75,7 +75,7 @@ class GUI(wx.Frame):
     def onRight(self,e):
         robot=Robot(checkerboardSize=self.checkerboardSize,connect=self.connect.connect,players=3)
         x,y=robot.step(self.connect.read(),self.identy)
-        self.chess(x,y)
+        return self.chess(x,y)
      
 class GUIThread (threading.Thread):
     def __init__(self,checkerboardSize=19):
