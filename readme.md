@@ -8,7 +8,7 @@
 
 * A three player game with simple rules. Generally speaking, two pieces are played in each round. The first player plays one piece in the first round, and the last player plays three pieces in the first round.
 
-* Right click to use the robot to move to the next chess piece (A robot that writes casually, it's quite silly. I apologize.).
+* Right click to use the robot to move to the next chess piece (Robots are something I casually wrote, it's quite silly. I apologize.).
 
 * Relying on wxPython to implement a graphical interface.
 
