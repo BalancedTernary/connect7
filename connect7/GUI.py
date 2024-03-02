@@ -9,6 +9,7 @@ from Robot import Robot
 
 #七子棋,三人游戏,每次下两子.最先下的人第一次下一子,最后下的人第一次下三子.
 #右键单击使用机器人下一子
+#随便写的机器人,比较呆,见谅.
 class GUI(wx.Frame):
     def __init__(self,parent,size = (480, 480),checkerboardSize=19): 
         super(GUI, self).__init__(parent, title = "轮玩家一走:红色",size = size)
@@ -35,6 +36,7 @@ class GUI(wx.Frame):
         self.Show(True)
         self.mainGrid.Layout()
         self.Refresh()
+        self.robot=Robot(checkerboardSize=self.checkerboardSize,connect=self.connect.connect,players=3)
         
     def clear(self):
         self.identy=1
@@ -73,8 +75,7 @@ class GUI(wx.Frame):
         self.chess(e.Id%self.checkerboardSize,e.Id//self.checkerboardSize)
       
     def onRight(self,e):
-        robot=Robot(checkerboardSize=self.checkerboardSize,connect=self.connect.connect,players=3)
-        x,y=robot.step(self.connect.read(),self.identy)
+        x,y=self.robot.step(self.connect.read(),self.identy)
         return self.chess(x,y)
      
 class GUIThread (threading.Thread):
